@@ -1,78 +1,38 @@
-// FIRST IMPLEMENTATION (part test passing)
 class SmartCalculator {
   constructor(initialValue) {
-    this.numValue = initialValue;
+    this.num = Number(initialValue) || 0;
+    this.exprArr = [this.num];
+  }
+  
+  add(number) {
+    this.exprArr.push(`+${number}`);
+    return this;
+  }
+  
+  subtract(number) {
+    this.exprArr.push(`-${number}`);
+    return this;
   }
 
-  toString() {
-    return this.numValue;
+  multiply(number) {
+    this.exprArr.push(`*${number}`);
+    return this;
+  }
+
+  devide(number) {
+    this.exprArr.push(`/${number}`);
+    return this;
+  }
+
+  pow(number) {
+    this.exprArr.push(`**${number}`);
+    return this;
   }
 
   valueOf() {
-    return this.numValue;
-  }
-
-  add(number) {
-    this.numValue+=number;
-    return this;
-  }
-  
-  subtract(number) {
-    this.numValue-=number;
-    return this;
-  }
-
-  multiply(number) {
-    this.numValue*=number;
-    return this;
-  }
-
-  devide(number) {
-    this.numValue/=number;
-    return this;
-  }
-
-  pow(number) {
-    this.numValue = this.numValue**number;
-    return this;
+    return eval(this.exprArr.join(''));
   }
 }
 
 module.exports = SmartCalculator;
 
-//  SECOND IMPLEMENTATION (test passing)
-class SmartCalculator {
-  constructor(initialValue) {
-    this.tempValue = initialValue.toString();
-  }
-  
-  add(number) {
-    this.tempValue += '+' + number;
-    return this;
-  }
-  
-  subtract(number) {
-    this.tempValue += '-' + number;
-    return this;
-  }
-
-  multiply(number) {
-    this.tempValue += '*' + number;
-    return this;
-  }
-
-  devide(number) {
-    this.tempValue += '/' + number;
-    return this;
-  }
-
-  pow(number) {
-    this.tempValue+= '**' + number;
-    return this;
-  }
-  valueOf(){
-    return eval(this.tempValue);
-  }
-}
-
-module.exports = SmartCalculator;
